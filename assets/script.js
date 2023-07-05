@@ -93,39 +93,37 @@ function addSearchToHistory(city) {
 }
 
 function updateForecast(weatherData) {
-  // Get the forecast information from the weatherData object
   var forecastInfo = weatherData.list;
-
-  // Clear the previous forecast information
   var forecastInfoContainer = document.getElementById('forecast-info');
   forecastInfoContainer.innerHTML = '';
 
-  // Loop through the forecast data and create HTML elements for each day
   for (var i = 0; i < forecastInfo.length; i++) {
-    // Extract the necessary information for each day
     var date = forecastInfo[i].dt_txt;
-    var iconCode = forecastInfo[i].weather[0].icon;
-    var temperature = forecastInfo[i].main.temp;
-    var humidity = forecastInfo[i].main.humidity;
-    var windSpeed = forecastInfo[i].wind.speed;
+    var time = date.split(' ')[1]; // Extract the time from the date string
 
-    // Create a div element to hold the forecast for the day
-    var forecastDiv = document.createElement('div');
-    forecastDiv.classList.add('forecast-day');
+    // Filter the data for noon (12:00 PM)
+    if (time === '12:00:00') {
+      var iconCode = forecastInfo[i].weather[0].icon;
+      var temperature = forecastInfo[i].main.temp;
+      var humidity = forecastInfo[i].main.humidity;
+      var windSpeed = forecastInfo[i].wind.speed;
 
-    // Update the content of the forecast div with the retrieved information
-    forecastDiv.innerHTML = `
-      <p>Date: ${date}</p>
-      <img src="https://openweathermap.org/img/w/${iconCode}.png" alt="Weather Icon">
-      <p>Temperature: ${temperature} C</p>
-      <p>Humidity: ${humidity} %</p>
-      <p>Wind Speed: ${windSpeed} m/s</p>
-    `;
+      var forecastDiv = document.createElement('div');
+      forecastDiv.classList.add('forecast-day');
 
-    // Add the forecast div to the forecastInfoContainer
-    forecastInfoContainer.appendChild(forecastDiv);
+      forecastDiv.innerHTML = `
+        <p>Date: ${date}</p>
+        <img src="https://openweathermap.org/img/w/${iconCode}.png" alt="Weather Icon">
+        <p>Temperature: ${temperature} °C</p>
+        <p>Humidity: ${humidity} %</p>
+        <p>Wind Speed: ${windSpeed} m/s</p>
+      `;
+
+      forecastInfoContainer.appendChild(forecastDiv);
+    }
   }
 }
+
 function addSearchHistory(city) {
   // Add the searched city to the search history
   addSearchToHistory(city);
