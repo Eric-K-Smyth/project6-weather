@@ -29,7 +29,7 @@ function getWeatherData(city) {
       var lon = data[0].lon;
 
       // Use the coordinates to make a request to the 5 Day Weather Forecast API
-      var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
       fetch(apiUrl)
         .then(function(response) {
@@ -70,7 +70,7 @@ function updateCurrentWeather(weatherData) {
     <p>City: ${cityName}</p>
     <p>Date: ${date}</p>
     <img src="https://openweathermap.org/img/w/${iconCode}.png" alt="Weather Icon">
-    <p>Temperature: ${temperature} K</p>
+    <p>Temperature: ${temperature} C</p>
     <p>Humidity: ${humidity} %</p>
     <p>Wind Speed: ${windSpeed} m/s</p>
   `;
@@ -117,7 +117,7 @@ function updateForecast(weatherData) {
     forecastDiv.innerHTML = `
       <p>Date: ${date}</p>
       <img src="https://openweathermap.org/img/w/${iconCode}.png" alt="Weather Icon">
-      <p>Temperature: ${temperature} K</p>
+      <p>Temperature: ${temperature} C</p>
       <p>Humidity: ${humidity} %</p>
       <p>Wind Speed: ${windSpeed} m/s</p>
     `;
