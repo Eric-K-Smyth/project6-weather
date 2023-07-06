@@ -6,9 +6,16 @@ header{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+main{
+    display: flex;
+}
+
 .sidebar{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
 }
 
 #search-form{
@@ -19,7 +26,8 @@ header{
 #history-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
 #city-input {
@@ -33,18 +41,50 @@ h2{
     font-size: 40px;
 }
 #history-list button {
-    width: 200px; 
+    width: 300px; 
     height: 40px; 
     font-size: 16px; 
+    margin: 5px;
 }
 #weather-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex: 3;
   }
   
   #current-weather,
   #forecast {
-    width: 66%;
-    margin-bottom: 20px;
+    width: 100%;
+    
+  }
+
+  #forecast-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .forecast-day {
+    width: 150px; /* Adjust the width value as per your preference */
+    height: 200px; /* Adjust the height value as per your preference */
+    margin-right: 20px; /* Adjust the margin as per your preference */
+    margin-bottom: 20px; /* Adjust the margin as per your preference */
+    padding: 40px;
+    border: black solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #current-weather-info{
+    border: black solid;
+    padding-left: 20px;
+  }
+  #city-name{
+    font-size: 20px;
+  }
+
+  #search-history h2{
+    text-align: center;
   }

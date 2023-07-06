@@ -68,13 +68,16 @@ function updateCurrentWeather(weatherData) {
   // Update the current weather display with the retrieved information
   var currentWeatherInfo = document.getElementById('current-weather-info');
   currentWeatherInfo.innerHTML = `
-    <p>City: ${cityName}</p>
+    <p class="city-name">City: ${cityName}</p>
     <p>Date: ${date}</p>
     <img src="https://openweathermap.org/img/w/${iconCode}.png" alt="Weather Icon">
     <p>Temperature: ${temperature} C</p>
     <p>Humidity: ${humidity} %</p>
     <p>Wind Speed: ${windSpeed} m/s</p>
   `;
+  var cityElement = currentWeatherInfo.querySelector('.city-name');
+  cityElement.style.fontSize = '30px';
+  cityElement.style.fontWeight = 'bold';
 }
 
 function addSearchHistory(city) {
@@ -181,6 +184,7 @@ function createHistoryButton(city) {
   var historyList = document.getElementById('history-list');
   historyList.appendChild(button);
 }
+
 
 loadSearchHistory();
   
