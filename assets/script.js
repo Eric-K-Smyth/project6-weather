@@ -1,5 +1,6 @@
 var apiKey = '934752ef31279a3c232101ae35bfa829'
 var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}'
+var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 //GIVEN a weather dashboard with form inputs
 //WHEN I search for a city
 //THEN I am presented with current and future conditions for that city and that city is added to the search history
@@ -76,7 +77,7 @@ function updateCurrentWeather(weatherData) {
   `;
 }
 
-function addSearchToHistory(city) {
+function addSearchHistory(city) {
   // Create a list item element
   var listItem = document.createElement('li');
   listItem.textContent = city;
@@ -125,25 +126,63 @@ function updateForecast(weatherData) {
 }
 
 function addSearchHistory(city) {
+
+  if (searchHistory.includes(city)) {
+    return;
+   } // Skip adding duplicate entries
   // Add the searched city to the search history
-  addSearchToHistory(city);
+  searchHistory.push(city);
+  saveSearchHistory();
+  createHistoryButton(city);
+}
+function saveSearchHistory() {
+  // Save the search history to local storage
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+function loadSearchHistory() {
+  // Load the search history from local storage
+  var historyList = document.getElementById('history-list');
+  historyList.innerHTML = '';
+
+  for (var i = 0; i < searchHistory.length; i++) {
+    var city = searchHistory[i];
+    createHistoryButton(city);
+
+  }
 }
 
 // Add an event listener to the form submission event
-document.getElementById('search-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  document.getElementById('search-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
 
   // Retrieve the value from the city input field
-  var cityInput = document.getElementById('city-input');
-  var city = cityInput.value.trim();
+    var cityInput = document.getElementById('city-input');
+    var city = cityInput.value.trim();
 
   // Call the getWeatherData function with the entered city
-  getWeatherData(city);
+    getWeatherData(city);
 
   // Clear the input field
-  cityInput.value = '';
+    cityInput.value = '';
 });
-      
+  
+function createHistoryButton(city) {
+    // Create a button element
+    var button = document.createElement('button');
+    button.textContent = city;
+
+    // Add a click event listener to the button
+    button.addEventListener('click', function() {
+    // Call getWeatherData function with the clicked city
+    getWeatherData(city);
+  });
+
+  // Add the button to the search history list
+  var historyList = document.getElementById('history-list');
+  historyList.appendChild(button);
+}
+
+loadSearchHistory();
   
   
   
