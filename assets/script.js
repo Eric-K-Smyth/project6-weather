@@ -75,7 +75,7 @@ function updateCurrentWeather(weatherData) {
     <p>Humidity: ${humidity} %</p>
     <p>Wind Speed: ${windSpeed} m/s</p>
   `;
-  var cityElement = currentWeatherInfo.querySelector('.city-name');
+  var cityElement = currentWeatherInfo.querySelector('.city-name'); //makes the city name stand out
   cityElement.style.fontSize = '30px';
   cityElement.style.fontWeight = 'bold';
 }

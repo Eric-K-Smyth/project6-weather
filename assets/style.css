@@ -7,10 +7,10 @@ header{
 }
 
 main{
-    display: flex;
+    display: flex; /*Allows all assets to be manipulated on the page to where i want them*/
 }
 
-.sidebar{
+.sidebar{ /*Puts search bar and hitory to the side*/
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -31,7 +31,7 @@ main{
 }
 
 #city-input {
-    width: 300px; /* Adjust the width value as per your preference */
+    width: 300px; /* Adjusts the size of the search bar */
     height: 45px;
     font-size: 30px;
   }
@@ -40,7 +40,7 @@ h2{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 40px;
 }
-#history-list button {
+#history-list button { /* Adjusts the size of the buttons */
     width: 300px; 
     height: 40px; 
     font-size: 16px; 
@@ -66,10 +66,10 @@ h2{
   }
   
   .forecast-day {
-    width: 150px; /* Adjust the width value as per your preference */
-    height: 200px; /* Adjust the height value as per your preference */
-    margin-right: 20px; /* Adjust the margin as per your preference */
-    margin-bottom: 20px; /* Adjust the margin as per your preference */
+    width: 150px; /*Puts 5 day forecast in little boxes*/
+    height: 200px; 
+    margin-right: 20px; 
+    margin-bottom: 20px; 
     padding: 40px;
     border: black solid;
     display: flex;
